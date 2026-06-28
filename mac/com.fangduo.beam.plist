@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.fangduo.beam</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/fangduo/Developer/beam/mac/.venv/bin/python3</string>
+        <string>/Users/fangduo/Developer/beam/mac/beam-mac.py</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>BEAM_SERVER</key>
+        <string>http://10.77.0.1:8899</string>
+        <key>BEAM_AUTH_TOKEN</key>
+        <string>42bb6684ae6c90d74e546c4bfa99976f</string>
+        <key>BEAM_CHANNEL</key>
+        <string>default</string>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/beam-mac.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/beam-mac.log</string>
+</dict>
+</plist>

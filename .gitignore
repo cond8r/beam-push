@@ -1,0 +1,48 @@
+# Flutter
+flutter_app/.dart_tool/
+flutter_app/.flutter-plugins
+flutter_app/.flutter-plugins-dependencies
+flutter_app/build/
+flutter_app/.packages
+flutter_app/pubspec.lock
+
+# Android
+flutter_app/android/.gradle/
+flutter_app/android/local.properties
+flutter_app/android/app/debug/
+flutter_app/android/key.properties
+*.keystore
+*.jks
+
+# iOS
+ios/Beam/Beam.xcodeproj/project.xcworkspace/
+ios/Beam/Beam.xcodeproj/xcuserdata/
+ios/Beam/*.xcarchive
+ios/Beam/DerivedData/
+ios/Beam/Pods/
+
+# macOS
+mac/.build/
+mac/*.xcodeproj/xcuserdata/
+mac/DerivedData/
+.DS_Store
+
+# Server
+server/__pycache__/
+server/*.pyc
+server/uploads/
+server/.env
+
+# Secrets / Config (保留示例，不提交实际配置)
+flutter_app/lib/services/config.dart
+ios/Beam/Beam/Constants.swift
+ios/Beam/BeamShare/ShareViewController.swift
+chrome-extension/config.js
+
+# Node
+node_modules/
+
+# Build outputs
+*.apk
+*.ipa
+*.zip

@@ -1,0 +1,22 @@
+import Foundation
+import UIKit
+
+enum Beam {
+    static let defaultServer    = "http://YOUR_SERVER_IP:8899"  // <-- fill in
+    static let defaultAuthToken = "YOUR_AUTH_TOKEN"              // <-- fill in
+    static let defaultChannel   = "default"
+
+    static var server: String {
+        get { UserDefaults.standard.string(forKey: "beam_server") ?? defaultServer }
+        set { UserDefaults.standard.set(newValue, forKey: "beam_server") }
+    }
+    static var authToken: String {
+        get { UserDefaults.standard.string(forKey: "beam_token") ?? defaultAuthToken }
+        set { UserDefaults.standard.set(newValue, forKey: "beam_token") }
+    }
+    static var channelId: String {
+        get { UserDefaults.standard.string(forKey: "beam_channel") ?? defaultChannel }
+        set { UserDefaults.standard.set(newValue, forKey: "beam_channel") }
+    }
+    static let deviceID = "ios-" + (UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString)
+}

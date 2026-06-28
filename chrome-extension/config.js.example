@@ -1,0 +1,29 @@
+// Shared config — imported by both popup and background
+// Copy this file to config.js and fill in your server details
+export const DEFAULTS = {
+  server:    'http://YOUR_SERVER_IP:8899',  // <-- fill in
+  authToken: 'YOUR_AUTH_TOKEN',              // <-- fill in
+  channelId: '',
+  channelPw: '',
+};
+
+export async function getConfig() {
+  return new Promise(resolve => {
+    chrome.storage.sync.get(DEFAULTS, resolve);
+  });
+}
+
+export async function saveConfig(cfg) {
+  return new Promise(resolve => chrome.storage.sync.set(cfg, resolve));
+}
+
+export function deviceId() {
+  return new Promise(resolve => {
+    chrome.storage.local.get({ deviceId: '' }, async data => {
+      if (data.deviceId) { resolve(data.deviceId); return; }
+      const id = 'chrome-' + crypto.randomUUID();
+      await chrome.storage.local.set({ deviceId: id });
+      resolve(id);
+    });
+  });
+}

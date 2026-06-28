@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4DDF88299B3BFDE63C2BE48B /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A3B06A4C408A7051872D73 /* APIService.swift */; };
+		51EE821DF0877A21477CE60A /* BeamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB2D1B7E48268245FE8A72 /* BeamApp.swift */; };
+		579DB95B9AB763B17990636F /* InboxStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC2647A4A4EE79E9343D2F /* InboxStore.swift */; };
+		7483E90226FD0AEF063B5FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC6CC57345496AB18CD7BE8F /* Assets.xcassets */; };
+		7AD43A77E0757E7392E1BF6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3FEA229B00B915F34D53AA /* Constants.swift */; };
+		92686B9C14AD87FA8BABD488 /* BeamShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B4A64B5BA0CF4767BCA2674D /* BeamShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B263B946C4FFD0B1ECA096E3 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCAC7612949C5CCDC734D6E /* PushService.swift */; };
+		D5FF8813FB3298FD0FE0F434 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B082FCA5FCFDEC7FEEF1E088 /* ContentView.swift */; };
+		DCF16D9AC9741D9B49AD50E1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0D3DF11033F5DED4CA624 /* Message.swift */; };
+		E4F8AF68377A28CD188B22E5 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95E10FBEAF743DAB816C4BD /* ShareViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FE0C3086C81680EB789CF8AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 790FC3C9CF30543FFECC7E10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE4CE655CA1E6DF7BC228F9A;
+			remoteInfo = BeamShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C78A3CC3AE092615B571DC61 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				92686B9C14AD87FA8BABD488 /* BeamShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2946A0F0CA80AAA129ACEC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3CFC2647A4A4EE79E9343D2F /* InboxStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxStore.swift; sourceTree = "<group>"; };
+		3DCAC7612949C5CCDC734D6E /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
+		4DEB2D1B7E48268245FE8A72 /* BeamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamApp.swift; sourceTree = "<group>"; };
+		55A3B06A4C408A7051872D73 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		B082FCA5FCFDEC7FEEF1E088 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B4A64B5BA0CF4767BCA2674D /* BeamShare.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = BeamShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA3FEA229B00B915F34D53AA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D3889F3EAAAE5924E92A2A9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E0F0D3DF11033F5DED4CA624 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		E52208CBE32EB1EFF91A219A /* Beam.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Beam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E95E10FBEAF743DAB816C4BD /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		FC6CC57345496AB18CD7BE8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1409173C98326C0A6943AFBD /* Beam */ = {
+			isa = PBXGroup;
+			children = (
+				FC6CC57345496AB18CD7BE8F /* Assets.xcassets */,
+				4DEB2D1B7E48268245FE8A72 /* BeamApp.swift */,
+				CA3FEA229B00B915F34D53AA /* Constants.swift */,
+				2946A0F0CA80AAA129ACEC95 /* Info.plist */,
+				29B01F8557B9C19731084C81 /* Models */,
+				DF1D3EAD9E9CC14FF6D86673 /* Services */,
+				289A4E06EC264A0C59388CB9 /* Views */,
+			);
+			path = Beam;
+			sourceTree = "<group>";
+		};
+		289A4E06EC264A0C59388CB9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B082FCA5FCFDEC7FEEF1E088 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		29B01F8557B9C19731084C81 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E0F0D3DF11033F5DED4CA624 /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		54285DD2CF6337ABA376C771 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E52208CBE32EB1EFF91A219A /* Beam.app */,
+				B4A64B5BA0CF4767BCA2674D /* BeamShare.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		594D384EF2CCE1D31C39997B = {
+			isa = PBXGroup;
+			children = (
+				1409173C98326C0A6943AFBD /* Beam */,
+				7A09C05D71770591174FC92D /* BeamShare */,
+				54285DD2CF6337ABA376C771 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7A09C05D71770591174FC92D /* BeamShare */ = {
+			isa = PBXGroup;
+			children = (
+				D3889F3EAAAE5924E92A2A9B /* Info.plist */,
+				E95E10FBEAF743DAB816C4BD /* ShareViewController.swift */,
+			);
+			path = BeamShare;
+			sourceTree = "<group>";
+		};
+		DF1D3EAD9E9CC14FF6D86673 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				55A3B06A4C408A7051872D73 /* APIService.swift */,
+				3CFC2647A4A4EE79E9343D2F /* InboxStore.swift */,
+				3DCAC7612949C5CCDC734D6E /* PushService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AEE9174A41DDDF79091FC941 /* Beam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 053EFD9C397DE0C3F91A3AB9 /* Build configuration list for PBXNativeTarget "Beam" */;
+			buildPhases = (
+				A78D2A07EA370F6AAFB85FAA /* Sources */,
+				480F5A729A0F0F6B52CBFC34 /* Resources */,
+				C78A3CC3AE092615B571DC61 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D61275847DDB47CF4A6691EF /* PBXTargetDependency */,
+			);
+			name = Beam;
+			packageProductDependencies = (
+			);
+			productName = Beam;
+			productReference = E52208CBE32EB1EFF91A219A /* Beam.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BE4CE655CA1E6DF7BC228F9A /* BeamShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B99D103EEBAE05F4900B36F /* Build configuration list for PBXNativeTarget "BeamShare" */;
+			buildPhases = (
+				92856E057C0FAD412894BEEF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeamShare;
+			packageProductDependencies = (
+			);
+			productName = BeamShare;
+			productReference = B4A64B5BA0CF4767BCA2674D /* BeamShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		790FC3C9CF30543FFECC7E10 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					AEE9174A41DDDF79091FC941 = {
+						DevelopmentTeam = R7UJ6NVP79;
+						ProvisioningStyle = Automatic;
+					};
+					BE4CE655CA1E6DF7BC228F9A = {
+						DevelopmentTeam = R7UJ6NVP79;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3309414E4BBC46092FA9FB81 /* Build configuration list for PBXProject "Beam" */;
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 594D384EF2CCE1D31C39997B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 54285DD2CF6337ABA376C771 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AEE9174A41DDDF79091FC941 /* Beam */,
+				BE4CE655CA1E6DF7BC228F9A /* BeamShare */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		480F5A729A0F0F6B52CBFC34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7483E90226FD0AEF063B5FC6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		92856E057C0FAD412894BEEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4F8AF68377A28CD188B22E5 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A78D2A07EA370F6AAFB85FAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DDF88299B3BFDE63C2BE48B /* APIService.swift in Sources */,
+				51EE821DF0877A21477CE60A /* BeamApp.swift in Sources */,
+				7AD43A77E0757E7392E1BF6E /* Constants.swift in Sources */,
+				D5FF8813FB3298FD0FE0F434 /* ContentView.swift in Sources */,
+				579DB95B9AB763B17990636F /* InboxStore.swift in Sources */,
+				DCF16D9AC9741D9B49AD50E1 /* Message.swift in Sources */,
+				B263B946C4FFD0B1ECA096E3 /* PushService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D61275847DDB47CF4A6691EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE4CE655CA1E6DF7BC228F9A /* BeamShare */;
+			targetProxy = FE0C3086C81680EB789CF8AB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		67E81F530F034B81D0B7C640 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 11;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = R7UJ6NVP79;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		75451F7C302CF60A9AD279B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = R7UJ6NVP79;
+				INFOPLIST_FILE = BeamShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fangduo.beam.BeamShare;
+				PROVISIONING_PROFILE_SPECIFIER = "Beam Share App Store";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		766129248972D39DB3625443 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 11;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = R7UJ6NVP79;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BC09E95F34368E4CEA9A5481 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				INFOPLIST_FILE = BeamShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fangduo.beam.BeamShare;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D1EE447522C68D4DCF0FF259 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Beam/Beam.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = R7UJ6NVP79;
+				INFOPLIST_FILE = Beam/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fangduo.beam;
+				PROVISIONING_PROFILE_SPECIFIER = "Beam App Store";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E1A9F176D66DF847333431BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Beam/Beam.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Beam/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fangduo.beam;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		053EFD9C397DE0C3F91A3AB9 /* Build configuration list for PBXNativeTarget "Beam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1A9F176D66DF847333431BB /* Debug */,
+				D1EE447522C68D4DCF0FF259 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		0B99D103EEBAE05F4900B36F /* Build configuration list for PBXNativeTarget "BeamShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC09E95F34368E4CEA9A5481 /* Debug */,
+				75451F7C302CF60A9AD279B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3309414E4BBC46092FA9FB81 /* Build configuration list for PBXProject "Beam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67E81F530F034B81D0B7C640 /* Debug */,
+				766129248972D39DB3625443 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 790FC3C9CF30543FFECC7E10 /* Project object */;
+}

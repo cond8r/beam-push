@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Beam Push",
+  "version": "1.1.0",
+  "description": "双向推送：在电脑和手机之间随时传文字和文件",
+  "permissions": [
+    "storage",
+    "notifications",
+    "clipboardWrite",
+    "clipboardRead",
+    "contextMenus",
+    "alarms",
+    "offscreen",
+    "downloads"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Beam Push"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

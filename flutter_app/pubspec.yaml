@@ -1,0 +1,43 @@
+name: beam
+description: Bidirectional push between all your devices
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # HTTP
+  http: ^1.2.0
+  # Local notifications (all platforms)
+  flutter_local_notifications: ^18.0.0
+  # File picker
+  file_picker: ^8.1.0
+  # Share files on mobile
+  share_plus: ^10.0.0
+  # Temporary directory for downloads
+  path_provider: ^2.1.0
+  # Persistent storage
+  shared_preferences: ^2.3.0
+  # UUID
+  uuid: ^4.4.0
+  # Open URLs in browser
+  url_launcher: ^6.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+dependency_overrides:
+  # objective_c 9.x has a hook/build.dart that deadlocks during Android builds
+  # path_provider_foundation 2.5.1 does not depend on objective_c
+  path_provider_foundation: 2.5.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon.png

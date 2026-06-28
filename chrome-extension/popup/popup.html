@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Beam Push</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div id="app">
+  <!-- Header -->
+  <div class="header">
+    <span class="logo">📡 Beam</span>
+    <button id="btn-settings" class="icon-btn" title="设置">⚙️</button>
+  </div>
+
+  <!-- Send panel -->
+  <div id="send-panel">
+    <textarea id="input-text" placeholder="输入要发送的内容…" rows="3"></textarea>
+    <div class="btn-row">
+      <button id="btn-send-text" class="btn-primary">发送文字</button>
+      <button id="btn-send-file" class="btn-secondary">发送文件</button>
+      <button id="btn-send-clip" class="btn-secondary">发剪贴板</button>
+    </div>
+    <div id="feedback"></div>
+  </div>
+
+  <!-- Inbox -->
+  <div class="section-title">收件箱</div>
+  <div id="inbox-list"></div>
+
+  <!-- Settings (hidden by default) -->
+  <div id="settings-panel" class="hidden">
+    <div class="field">
+      <label>推名 (Channel)</label>
+      <input id="cfg-channel" type="text" placeholder="如: teamtext">
+    </div>
+    <div class="field">
+      <label>推码 (Password)</label>
+      <input id="cfg-pw" type="password" placeholder="设置后与其他设备一致">
+    </div>
+    <div class="btn-row">
+      <button id="btn-save" class="btn-primary">保存</button>
+      <button id="btn-cancel" class="btn-secondary">取消</button>
+    </div>
+  </div>
+</div>
+<input type="file" id="file-input" style="display:none">
+<script src="popup.js" type="module"></script>
+</body>
+</html>
