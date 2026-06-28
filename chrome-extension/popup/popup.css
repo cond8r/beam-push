@@ -23,6 +23,11 @@ textarea:focus { border-color: #2563EB; }
 #feedback.ok  { color: #16a34a; }
 #feedback.err { color: #dc2626; }
 
+#upload-progress { margin-top: 6px; }
+.progress-bar { height: 4px; background: #e5e7eb; border-radius: 2px; overflow: hidden; }
+#progress-fill { height: 100%; background: #2563EB; border-radius: 2px; width: 0%; transition: width 0.1s; }
+#progress-text { font-size: 11px; color: #6b7280; margin-top: 3px; }
+
 .section-title { padding: 8px 12px 4px; font-size: 11px; font-weight: 600;
   color: #6b7280; text-transform: uppercase; letter-spacing: .5px; }
 

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Beam Push",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "双向推送：在电脑和手机之间随时传文字和文件",
   "permissions": [
     "storage",

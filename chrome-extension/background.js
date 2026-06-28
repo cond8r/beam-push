@@ -166,33 +166,4 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     chrome.storage.local.get({ inbox: [] }).then(d => sendResponse({ inbox: d.inbox }));
     return true;
   }
-  if (msg.type === 'upload-file') {
-    const { bytes, filename } = msg;
-    (async () => {
-      const cfg   = await getConfig();
-      const devId = await deviceId();
-      try {
-        const blob = new Blob([new Uint8Array(bytes)]);
-        const form = new FormData();
-        form.append('from_device', devId);
-        form.append('channel_id',  cfg.channelId);
-        form.append('auth_token',  cfg.authToken);
-        form.append('file', blob, filename);
-        const r = await fetch(`${cfg.server}/upload`, { method: 'POST', body: form });
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        sendResponse({ ok: true });
-        chrome.notifications.create('upload-ok-' + Date.now(), {
-          type: 'basic', iconUrl: 'icons/icon48.png',
-          title: 'Beam ✓', message: `已发送 ${filename}`,
-        });
-      } catch (e) {
-        sendResponse({ ok: false, error: e.message });
-        chrome.notifications.create('upload-err-' + Date.now(), {
-          type: 'basic', iconUrl: 'icons/icon48.png',
-          title: 'Beam ✗', message: `发送失败: ${e.message}`,
-        });
-      }
-    })();
-    return true;
-  }
 });

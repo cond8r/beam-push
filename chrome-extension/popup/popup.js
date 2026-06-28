@@ -59,33 +59,95 @@ $('btn-send-clip').addEventListener('click', async () => {
 });
 
 // ── Send file ─────────────────────────────────────────────────────────────────
+const GOFILE_THRESHOLD = 50 * 1024 * 1024; // 50 MB
+
 $('btn-send-file').addEventListener('click', () => $('file-input').click());
 
 $('file-input').addEventListener('change', async e => {
   const file = e.target.files[0];
   if (!file) return;
   if (!cfg.channelId) { showSettings(); return; }
-  if (file.size > 100 * 1024 * 1024) {
-    showFeedback('文件不能超过 100 MB', 'err'); return;
-  }
-  showFeedback('上传中…');
+  showProgress(0);
   try {
-    // Read file in popup context, hand off bytes to background service worker.
-    // This survives popup close on Windows (where the file picker steals focus).
-    const buffer = await file.arrayBuffer();
-    const bytes  = Array.from(new Uint8Array(buffer));
-    await new Promise((resolve, reject) => {
-      chrome.runtime.sendMessage({ type: 'upload-file', bytes, filename: file.name }, res => {
-        if (chrome.runtime.lastError) return reject(new Error(chrome.runtime.lastError.message));
-        res?.ok ? resolve() : reject(new Error(res?.error || '上传失败'));
+    if (file.size > GOFILE_THRESHOLD) {
+      const downloadUrl = await uploadToGoFile(file, p => showProgress(p * 0.95));
+      const r = await fetch(`${cfg.server}/send`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          from_device: devId, channel_id: cfg.channelId,
+          msg_type: 'file', content: downloadUrl,
+          filename: file.name, auth_token: cfg.authToken,
+        }),
       });
-    });
+      if (!r.ok) throw new Error(`发送失败 HTTP ${r.status}`);
+    } else {
+      await uploadToBeam(file, p => showProgress(p));
+    }
+    showProgress(1);
+    hideProgress();
     showFeedback(`✓ 已发送 ${file.name}`, 'ok');
   } catch (err) {
+    hideProgress();
     showFeedback(`✗ ${err.message}`, 'err');
   }
   e.target.value = '';
 });
+
+function uploadToBeam(file, onProgress) {
+  return new Promise((resolve, reject) => {
+    const form = new FormData();
+    form.append('from_device', devId);
+    form.append('channel_id',  cfg.channelId);
+    form.append('auth_token',  cfg.authToken);
+    form.append('file', file, file.name);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `${cfg.server}/upload`);
+    xhr.upload.onprogress = ev => {
+      if (ev.lengthComputable) onProgress(ev.loaded / ev.total);
+    };
+    xhr.onload  = () => xhr.status === 200 ? resolve() : reject(new Error(`HTTP ${xhr.status}`));
+    xhr.onerror = () => reject(new Error('网络错误'));
+    xhr.send(form);
+  });
+}
+
+async function uploadToGoFile(file, onProgress) {
+  const res    = await fetch('https://api.gofile.io/servers');
+  const data   = await res.json();
+  const server = data.data.servers[0].name;
+  return new Promise((resolve, reject) => {
+    const form = new FormData();
+    form.append('file', file, file.name);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `https://${server}.gofile.io/contents/uploadFile`);
+    xhr.upload.onprogress = ev => {
+      if (ev.lengthComputable) onProgress(ev.loaded / ev.total);
+    };
+    xhr.onload = () => {
+      if (xhr.status !== 200) { reject(new Error(`GoFile HTTP ${xhr.status}`)); return; }
+      const json = JSON.parse(xhr.responseText);
+      if (json.status !== 'ok') { reject(new Error('GoFile 上传失败')); return; }
+      resolve(json.data.downloadPage);
+    };
+    xhr.onerror = () => reject(new Error('GoFile 网络错误'));
+    xhr.send(form);
+  });
+}
+
+function showProgress(p) {
+  $('upload-progress').classList.remove('hidden');
+  $('feedback').textContent = '';
+  $('progress-fill').style.width = `${Math.round(p * 100)}%`;
+  $('progress-text').textContent  = `上传中 ${Math.round(p * 100)}%`;
+}
+
+function hideProgress() {
+  setTimeout(() => {
+    $('upload-progress').classList.add('hidden');
+    $('progress-fill').style.width = '0%';
+  }, 300);
+}
 
 // ── Inbox ─────────────────────────────────────────────────────────────────────
 async function loadInbox() {
