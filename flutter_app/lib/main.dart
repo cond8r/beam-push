@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'models/message.dart';
 import 'services/api_service.dart';
 import 'services/config.dart';
+import 'services/fcm_service.dart';
 import 'services/inbox_store.dart';
 import 'services/notification_service.dart';
 import 'screens/home_screen.dart';
@@ -14,6 +15,10 @@ void main() async {
   await NotificationService.instance.init();
   await InboxStore.instance.load();
   runApp(const BeamApp());
+  // Firebase init requires network — run after UI is shown to avoid blocking splash
+  if (Platform.isAndroid) {
+    FcmService.instance.init().catchError((_) {});
+  }
 }
 
 class BeamApp extends StatefulWidget {
@@ -47,7 +52,10 @@ class _BeamAppState extends State<BeamApp> with WidgetsBindingObserver {
   }
 
   void _startServices() {
-    ApiService.instance.register().catchError((_) {});
+    // Android: FcmService.init() in main() already called register() with push token
+    if (!Platform.isAndroid) {
+      ApiService.instance.register().catchError((_) {});
+    }
     _connectSSE();
   }
 

@@ -32,6 +32,8 @@ server/__pycache__/
 server/*.pyc
 server/uploads/
 server/.env
+server/fcm-service-account.json
+server/firebase-sa.json
 
 # Secrets / Config (保留示例，不提交实际配置)
 flutter_app/lib/services/config.dart

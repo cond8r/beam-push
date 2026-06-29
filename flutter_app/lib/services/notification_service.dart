@@ -19,16 +19,21 @@ class NotificationService {
       ),
     );
 
-    // Request permissions on macOS
+    if (Platform.isAndroid) {
+      final android = _plugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+      await android?.requestNotificationsPermission();
+      // Create the channel immediately so FCM background notifications have somewhere to land
+      await android?.createNotificationChannel(const AndroidNotificationChannel(
+        'beam_channel',
+        'Beam 推送',
+        description: '来自 Mac 的推送内容',
+        importance: Importance.high,
+      ));
+    }
     if (Platform.isMacOS) {
       await _plugin
           .resolvePlatformSpecificImplementation<MacOSFlutterLocalNotificationsPlugin>()
           ?.requestPermissions(alert: true, sound: true);
-    }
-    if (Platform.isAndroid) {
-      await _plugin
-          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-          ?.requestNotificationsPermission();
     }
   }
 

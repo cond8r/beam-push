@@ -2,7 +2,7 @@
 # Deploy Beam server to VPS
 # Usage: bash deploy.sh [VPS_IP]
 
-VPS="${1:-root@82.156.210.133}"
+VPS="${1:-ubuntu@82.156.210.133}"
 REMOTE_DIR="/opt/beam"
 
 set -e
@@ -32,8 +32,8 @@ Environment="BEAM_DB=/opt/beam/beam.db"
 #Environment="APNS_KEY_P8=-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----"
 #Environment="BEAM_BUNDLE_ID=com.fangduo.beam"
 #Environment="APNS_PROD=1"
-# Android FCM — fill in Firebase Server Key:
-#Environment="FCM_SERVER_KEY=AAAA..."
+# Android FCM (v1 API) — put service account JSON path on server:
+#Environment="FCM_SA_FILE=/opt/beam/firebase-sa.json"
 
 [Install]
 WantedBy=multi-user.target

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "879307652677",
+    "project_id": "beam-3b3c8",
+    "storage_bucket": "beam-3b3c8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879307652677:android:b9daddb0635ecec8f42d2c",
+        "android_client_info": {
+          "package_name": "com.fangduo.beam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMO9bAJqRPOP3BUn4tKRgzlOoplyj6EAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

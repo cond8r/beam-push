@@ -29,7 +29,11 @@ _apns_key_file = os.environ.get("APNS_KEY_FILE", "")
 APNS_KEY_P8    = open(_apns_key_file).read().strip() if _apns_key_file else os.environ.get("APNS_KEY_P8", "")
 BUNDLE_ID      = os.environ.get("BEAM_BUNDLE_ID", "com.fangduo.beam")
 APNS_PROD      = os.environ.get("APNS_PROD", "0") == "1"
-FCM_SERVER_KEY = os.environ.get("FCM_SERVER_KEY", "")
+_fcm_sa_file   = os.environ.get("FCM_SA_FILE", "")
+_fcm_sa_json   = os.environ.get("FCM_SA_JSON", "")
+FCM_SA: dict   = json.loads(open(_fcm_sa_file).read()) if _fcm_sa_file else \
+                 json.loads(_fcm_sa_json) if _fcm_sa_json else {}
+GOOGLE_PROXY   = os.environ.get("GOOGLE_PROXY", "")   # e.g. "http://127.0.0.1:7890"
 DB_PATH        = os.environ.get("BEAM_DB", "/opt/beam/beam.db")
 FILES_DIR      = os.environ.get("BEAM_FILES", "/opt/beam/files")
 
@@ -115,26 +119,53 @@ async def push_apns(token: str, title: str, body: str, data: dict):
         except Exception as e:
             print(f"[apns] error: {e}")
 
-async def push_fcm(token: str, title: str, body: str, data: dict):
-    if not FCM_SERVER_KEY:
-        return
-    payload = {
-        "to": token,
-        "notification": {"title": title, "body": body, "sound": "default"},
-        "data": {k: str(v) for k, v in data.items()},
-        "priority": "high"
+def _google_client() -> httpx.AsyncClient:
+    return httpx.AsyncClient(proxy=GOOGLE_PROXY) if GOOGLE_PROXY else httpx.AsyncClient()
+
+async def _fcm_token() -> str:
+    """Get OAuth2 bearer token for FCM v1 using service account."""
+    now = int(time.time())
+    claim = {
+        "iss":   FCM_SA["client_email"],
+        "scope": "https://www.googleapis.com/auth/firebase.messaging",
+        "aud":   "https://oauth2.googleapis.com/token",
+        "iat":   now,
+        "exp":   now + 3600,
     }
-    async with httpx.AsyncClient() as c:
-        try:
-            r = await c.post("https://fcm.googleapis.com/fcm/send",
-                             json=payload,
-                             headers={"Authorization": f"key={FCM_SERVER_KEY}",
+    signed = jwt.encode(claim, FCM_SA["private_key"], algorithm="RS256")
+    async with _google_client() as c:
+        r = await c.post("https://oauth2.googleapis.com/token",
+                         data={"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+                               "assertion": signed},
+                         timeout=15)
+        return r.json()["access_token"]
+
+async def push_fcm(token: str, title: str, body: str, data: dict):
+    if not FCM_SA:
+        return
+    try:
+        access_token = await _fcm_token()
+        project_id   = FCM_SA["project_id"]
+        payload = {
+            "message": {
+                "token": token,
+                "notification": {"title": title, "body": body},
+                "data": {k: str(v) for k, v in data.items() if v is not None},
+                "android": {"priority": "HIGH", "notification": {"channel_id": "beam_channel"}},
+            }
+        }
+        url = f"https://fcm.googleapis.com/v1/projects/{project_id}/messages:send"
+        async with _google_client() as c:
+            r = await c.post(url, json=payload,
+                             headers={"Authorization": f"Bearer {access_token}",
                                       "Content-Type": "application/json"},
-                             timeout=10)
+                             timeout=15)
             if r.status_code != 200:
                 print(f"[fcm] {r.status_code}: {r.text}")
-        except Exception as e:
-            print(f"[fcm] error: {e}")
+            else:
+                print(f"[fcm] sent ok to {token[:20]}...")
+    except Exception as e:
+        print(f"[fcm] error: {type(e).__name__}: {e}")
 
 # ── App lifespan ──────────────────────────────────────────────────────────────
 @asynccontextmanager
@@ -177,8 +208,13 @@ async def register(req: RegisterReq):
     auth(req.auth_token)
     db = get_db()
     db.execute(
-        "INSERT OR REPLACE INTO devices (device_id, channel_id, device_type, push_token, updated_at)"
-        " VALUES (?,?,?,?,?)",
+        "INSERT INTO devices (device_id, channel_id, device_type, push_token, updated_at)"
+        " VALUES (?,?,?,?,?)"
+        " ON CONFLICT(device_id) DO UPDATE SET"
+        "   channel_id=excluded.channel_id,"
+        "   device_type=excluded.device_type,"
+        "   push_token=COALESCE(excluded.push_token, push_token),"
+        "   updated_at=excluded.updated_at",
         (req.device_id, req.channel_id, req.device_type,
          req.push_token, time.time())
     )
